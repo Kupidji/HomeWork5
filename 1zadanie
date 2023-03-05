@@ -1,1 +1,31 @@
+import random
 
+def checkInput(i : int):
+  return (i == 1 or i == 2 or i == 3)
+
+def checkStatus(fromUser : int, fromBot : int):
+  if (fromUser == fromBot): return 0
+  if (fromUser == 1 and fromBot == 2): return 1
+  if (fromUser == 2 and fromBot == 3): return 1
+  if (fromUser == 3 and fromBot == 1): return 1
+  if (fromBot == 1 and fromUser == 2): return 2
+  if (fromBot == 2 and fromUser == 3): return 2
+  if (fromBot == 3 and fromUser == 1): return 2
+
+def mainMenu():
+  while(True):
+    print("Введите число от 1 до 3, где 1 - камень, 2 - ножницы, 3 - бумага") 
+    a = int(input())
+    if (checkInput(a)):
+      bot = random.randint(1, 3)
+      if (checkStatus(a, bot) == 0):
+        print("Ничья")
+      if (checkStatus(a, bot) == 1):
+        print("Победил пользователь")
+      if (checkStatus(a, bot) == 3):
+        print("Победил бот") 
+    print("Хотите сыграть еще? 0 - нет, 1 - да")
+    answer = int(input())
+    if (answer == 0): break
+
+mainMenu()
